@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<div>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            .box {
+                background-color: rgb(224, 206, 247);
+                border: 5px solid rebeccapurple;
+            }
+            .float{
+                width: 100px;
+                height: 100px;
+                background: #FFF;
+                border: 2px solid red;
+                float: left;
+            }
+            .box2 {
+                background-color: rgb(224, 206, 247);
+                border: 5px solid rebeccapurple;
+                overflow: auto;
+            }
+            .float2{
+                width: 100px;
+                height: 100px;
+                background: #FFF;
+                border: 2px solid red;
+                float: left;
+            }
+            .blue, .red-inner {
+            height: 50px;
+            margin: 10px 0;
+            }
+
+            .blue {
+            background: blue;
+            }
+
+            .red-outer {
+            overflow: hidden;
+            background: red;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            # 块格式化上下文（Block Formatting Context，BFC） 是Web页面的可视化CSS渲染的一部分，是块盒子的布局过程发生的区域，也是浮动元素与其他元素交互的区域。
+            * BFC是一种边距重叠解决方案
+        </p>
+        <html>
+                * 根元素(</html>) <br>
+                * 浮动元素（元素的 float 不是 none）<br>
+                * 绝对定位元素（元素的 position 为 absolute 或 fixed）<br>
+                * 行内块元素（元素的 display 为 inline-block）<br>
+                * 表格单元格（元素的 display为 table-cell，HTML表格单元格默认为该值）<br>
+                * 表格标题（元素的 display 为 table-caption，HTML表格标题默认为该值）<br>
+                * 匿名表格单元格元素（元素的 display为 table、table-row、 table-row-group、table-header-group、table-footer-group（分别是HTML table、row、tbody、thead、tfoot的默认属性）或 inline-table）<br>
+                * overflow 值不为 visible 的块元素<br>
+                * display 值为 flow-root 的元素<br>
+                * contain 值为 layout、content或 paint 的元素<br>
+                * 弹性元素（display为 flex 或 inline-flex元素的直接子元素）<br>
+                * 网格元素（display为 grid 或 inline-grid 元素的直接子元素）<br>
+                * 多列容器（元素的 column-count 或 column-width 不为 auto，包括 column-count 为 1）<br>
+                * column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）。
+        </div>
+        <h1>让浮动内容和周围的内容等高</h1>
+        <div class="box">
+            <div class="float">I am a floated box!</div>
+            <p>I am content inside the container.</p>
+        </div>
+        <p> 给父级设置 overflow: auto; </p>
+        <div class="box2">
+            <div class="float2">I am a floated box!</div>
+            <p>I am content inside the container.</p>
+        </div>
+        <p>
+            * 设置 overflow: auto 创建一个新的BFC来包含这个浮动。我们的 <div> 元素现在变成布局中的迷你布局。任何子元素都会被包含进去。<br>
+
+            * 使用 overflow 来创建一个新的BFC，是因为 overflow 属性告诉浏览器你想要怎样处理溢出的内容。当你使用这个属性只是为了创建BFC的时候，你可能会发现一些不想要的问题，比如滚动条或者一些剪切的阴影，需要注意。另外，对于后续的开发，可能不是很清楚当时为什么使用overflow。所以你最好添加一些注释来解释为什么这样做。
+        </p>
+        <h1>外边距塌陷</h1>
+        <p>创建新的BFC避免两个相邻 <div> 之间的 外边距合并 问题</p>
+        <div class="blue"></div>
+        <div class="red-outer">
+        <div class="red-inner">red inner</div>
+        </div>
+        
+    </body>
+</html>
