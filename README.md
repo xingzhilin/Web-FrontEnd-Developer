@@ -1,6 +1,7 @@
 # @author  xingzhilin
 # @date 2019-08-16
 # resume
+
     ```
         Hello, I am Xingzhilin, nice to talk to you, and so appreciated to have this interview opportunity offered by Sth Company. I was graduated from Hebei College of Politics and Law; my major was Computer information management. During my study, I finished some computer science courses including C language, VB, web design, MySql and so on. 
 
