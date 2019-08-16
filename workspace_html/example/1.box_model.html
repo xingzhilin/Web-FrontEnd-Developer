@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            .content-box{
+                width: 100px;
+                height: 100px;
+                box-sizing: content-box;
+                border: 5px solid #ccc;
+                padding: 5px;
+                margin: 10px;
+                background: red;
+            }
+            .border-box{
+                width: 100px;
+                height: 100px;
+                box-sizing: border-box;
+                border: 5px solid #ccc;
+                padding: 5px;
+                margin: 10px;
+                background: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+            盒模型 - box model
+            1、盒模型包含了元素内容（content）、内边距（padding）、边框（border）、外边距（margin）几个要素。
+            2、分类：
+                （1）标准模型
+                （2）IE模型
+            3、标准模型和IE模型的区别
+                * 主要是内容计算方式不同
+                * 语法： box-sizing:border-box || content-box || inherit
+                * 标准盒模型
+                    - 当使用content-box时：页面将采用标准模式来解析计算，content-box也是默认模式
+                    - W: content
+                * IE盒模型
+                    - 当使用border-box时，页面将采用怪异模式解析计算，怪异模式也称为IE模式
+                    _ W: content + padding + border
+                *   - 当使用inherit时：页面将从父元素继承box-sizing的值
+        -->
+
+        <div class="content-box">
+            
+        </div>
+        <div class="border-box">
+
+        </div>
+    </body>
+</html>
