@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,viewport-fit=cover">
+    <meta content="yes" name="apple-mobile-web-app-capable"/>
+    <meta content="yes" name="apple-touch-fullscreen"/>
+    <meta content="telephone=yes,email=no" name="format-detection"/>
+    <title></title>
+    <link rel="stylesheet" href="./../../static/css/base_reset.css">
+    <link rel="stylesheet" href="./../../static/js/layer_mobile/need/layer.css">
+    <link rel="stylesheet" href="./index.css">
+    <script type="text/javascript" src="./../../static/js/rem.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+  </head>
+  <body>
+      <div class="zl-main-wrap" id="app">
+        <div class="zl-main-top">
+            <img src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/img_main_top.png?timer=1232335946575" alt="">
+        </div>
+        <div class="zl-main-coupon">
+            <img v-show="backShow === true" @click="getCouponSingle(initCouponListData[0].couponSchemaTid)" src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/img_coupon.png?timer=1232335946575" alt="">
+            <img v-show="backShow === false" src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/img_coupon.png?timer=1232335946575" alt="">
+        </div>
+        <!-- <div class="zl-list-tit">
+            <img src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/icon_title_m.png?timer=1232335946575" alt="">
+            <span>食力出击</span>
+            <img src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/icon_title_m.png?timer=12093772323" alt="">
+        </div> -->
+        <div class="zl-list-tit">
+            <img src="https://zxyg.oss-cn-beijing.aliyuncs.com/timage/activity/common/icon_title.png?timer=1232335946575" class="title" alt="">
+        </div>
+        <div class="zl-main-list">
+            <ul>
+                <li class="shop-eng-list-a" v-for="item in initListData"  data-productId="" @click="goToProductDetails(item)">
+                    <img class="shop-eng-list-a-img" :src="item.mainImage"/>
+                    <div class="shop-eng-list-a-v">
+                        <div class="shop-eng-list-a-va">{{item.productName}}</div>
+                        <div class="shop-eng-list-a-vc">{{item.productTitle}}</div>
+                        <div class="shop-eng-list-a-vb">
+                            <div class="shop-eng-list-a-vb-t" style="margin-top:6rpx;font-size:34rpx;float:left;margin-left:-5rpx">￥</div>
+                            <div class="shop-eng-list-a-vb-t" style="font-size: 32rpx;margin-top:9rpx;">{{item.minSkuPrice}}</div>
+                            <div v-if="item.planRebate != ''" class="shop-eng-list-a-vb-b">赚￥{{item.planRebate}}</div>
+                        </div>
+                        <div class="huaxian" style="float:left;margin-left:-2rpx" v-if="item.maxMarketPrice != ''">
+                        <div class="huaxianjiage">￥
+                            <span style="text-decoration: line-through">{{item.maxMarketPrice}}</span>
+                        </div>
+                        <!-- <view class='hengxian'></view> -->
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+    <script type="text/javascript" src="./../../static/js/vue.min.js"></script>
+    <script type="text/javascript" src="./../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./../../static/js/layer_mobile/layer.js"></script>
+    <script type="text/javascript" src="./../../static/js/main.js"></script>
+    <script type="text/javascript" src="./../../static/js/utils.js"></script>
+    <script type="text/javascript" src="./index.js"></script>
+  </body>
+</html>
