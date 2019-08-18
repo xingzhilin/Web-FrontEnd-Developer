@@ -12,7 +12,7 @@ export const HomeRouter = {
 
 };
 export const HomeRouter2 = {
-    path: '/home',
+    path: '/home2',
     name: 'HomeLink',
     meta: {
       title: 'Home'
