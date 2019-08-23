@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            基本思想：利用原型让一个引用类型继承另外一个引用类型的属性和方法 
+            构造函数，原型，实例之间的关系：每个构造函数都有一个原型对象，原型对象包含一个指向构造函数的指针，而实例都包含一个指向原型对象的内部指针 
+            具体实现：
+        */
+        function Super(){
+            this.val = 1;
+            this.arr = [1];
+        }
+        function Sub(){
+        }
+        Sub.prototype = new Super();//核心代码
+        var sub1 = new Sub();
+        var sub2 = new Sub();//用构造函数创建了两个对象
+        sub1.val = 2;
+        sub1.arr.push(2);
+        console.log(sub1.val);//2
+        console.log(sub2.val);//1
+        console.log(sub1.arr);//1,2
+        console.log(sub2.arr);//1,2
+
+
+        /*
+            2.核心
+                用父类实例充当子类的原型对象
+
+            3.优缺点
+                优点：简单，易于实现 
+                缺点： 
+                    1.修改sub1.arr之后sub2.arr也发生了改变，因为来自原型对象的引用属性是所有实例共享的 
+                    可以这样理解执行过程： 
+                    执行sub1.arr.push(2)是先对sub1进行属性查找，找遍实例属性（在这个例子中未定义实例属性）,没找到就顺着原型链向上找，找到了sub1的原型对象，发现arr属性，于是在arr末尾插入2,所以sub2.arr也变了 
+                    2.创建子类实例时，无法向父类构造函数传参数
+        */
+
+
+
+
+    </script>
+</body>
+</html>

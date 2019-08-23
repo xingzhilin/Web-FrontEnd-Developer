@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Fun(){
+            //私有属性
+            var val = 1;//私有属性
+            var arr = [1];//私有引用属性
+            function fun(){}  //私有函数（引用属性）
+            //实例属性
+            this.val = 1;  //实例基本属性
+            this.arr = [1];  //实例引用属性
+            this.fun = function(){};//实例函数（引用属性）
+        }
+        //原型属性
+        Fun.prototype.val = 1;//原型基本属性
+        Fun.prototype.arr = [1];//原型引用属性
+        Fun.prototype.fun = function(){};//原型函数（引用类型）
+        //在这个原型函数中，可以使用它所定义的所有属性
+
+        var fn1 = new Fun();
+        console.log(fn1)
+        console.log(fn1.val)
+    </script>
+</body>
+</html>

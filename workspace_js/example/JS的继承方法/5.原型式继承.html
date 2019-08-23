@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            这种继承借助原型并基于已有的对象创建新对象，同时还不用创建自定义的方式称为原型式继承 
+            具体实现：
+        */
+        
+        function beget(obj){
+            var F = function(){};
+            F.prototype = obj;
+            return new F();
+        }
+        function Super(){
+        this.val = 1;
+        this.arr = [1];
+        }
+        //拿到父类对象
+        var sup = new Super();
+        var sub = beget(sup);
+        sub.attr1 = 1;
+        sub.attr2 = 2;
+
+        // ------
+
+        function obj(o){
+    function F(){}
+    F.prototype = o;//将函数的原型设置为o
+    return new F();
+}
+var box = {
+
+    name:"trigkkit4",
+    arr: ['brother','sisiter','baba']
+
+}
+var b1 = obj(box);//返回一个以box函数为原型的对象
+console.log(b1.name);//trigkkit4
+console.log(b1.arr);//["brother","sister","baba"]
+b1.name = 'mike';
+console.log(b1.name);//mike
+b1.arr.push('parents');
+console.log(b1.arr);//["brother","sister","baba","parents"]
+var b2 = obj(box);
+console.log(b2.name);//trigkkit4
+console.log(b2.arr);//["brother","sister","baba","parents"]
+
+
+
+        /*
+          输出结果的原因是： 
+            JS中基本类型与复杂类型存储的方式，可以参考一下JS堆栈和拷贝的理解 
+            优缺点： 
+            优点： 
+            1.从已有对象衍生新的对象，不需要创建自定义类型 
+            2.原型引用属性会被所有实例所共享，因为是用整个父类对象充当子类的原型对象，所以这个缺陷无法避免 
+            3.无法实现代码的复用
+        */
+
+
+
+
+    </script>
+</body>
+</html>

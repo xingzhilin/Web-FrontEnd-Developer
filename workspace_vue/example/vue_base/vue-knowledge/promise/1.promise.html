@@ -22,19 +22,170 @@
     <script>
 
 
-        function PromiseTest(){
-            let p = new Promise(function(resolve, reject){
-                //做一些异步操作
+        // function PromiseTest(){
+        //     let p = new Promise(function(resolve, reject){
+        //         //做一些异步操作
+        //         setTimeout(function(){
+        //             console.log('执行完成Promise');
+        //             resolve('要返回的数据可以任何数据例如接口返回数据');
+        //         }, 2000);
+        //     });
+        //     return p;
+        // }
+        // PromiseTest().then( data => {
+        //     console.log(data)
+        // });
+
+        //第一个异步函数
+        // var oneStep = function () {
+        //     return new Promise (function (resolve,reject) {
+        //         console.log(1111);
+        //         //执行返回成功的函数，data为返回的值
+        //         resolve('aaaaaa')
+        //         //执行返回失败的reject，err错误的原因
+        //         reject(err)
+        //     })
+        // }
+        //第二个异步函数，params为第一个异步resolve中传入的data值
+        // var twoStep = function (params) {
+        //     return new Promise (function (resolve,reject) {
+        //         //执行返回成功的函数，data为返回的值
+        //         console.log(2222222);
+        //         resolve('bbbbbbbbbbbbb')
+        //         //执行返回失败的reject，err错误的原因
+        //         reject(err)
+        //     })
+        // }
+        // oneStep().then(function(data){ //第一个then为第一个回调执行返回的结果
+        //     //将第一个回调函数成功的data值传入twoStep中
+        //     console.log(111, data);
+        //     return twoStep (data)
+        // },function(err){
+        //     //reject时的处理
+        // }).then(function (data) {  //第二个then为第二个回调执行返回的结果
+        //     console.log(2222, data);
+        //     //resolve处理方法
+        //     return '3333'
+        // },function (err) {
+        //     //reject处理方法
+        // }).then( data => {
+        //     console.log(data);
+        // })
+
+
+
+        // function promiseClick(){
+        //     let p = new Promise(function(resolve, reject){
+        //         setTimeout(function(){
+        //             var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+        //             console.log('随机数生成的值：',num)
+        //             if(num<=10){
+        //                 resolve(num);
+        //             }
+        //             else{
+        //                 reject('数字太于10了即将执行失败回调');
+        //             }
+        //         }, 2000);
+        //     })
+        //     return p
+        // }
+
+        // promiseClick().then(
+        //     function(data){
+        //         console.log('resolved成功回调');
+        //         console.log('成功回调接受的值：',data);
+        //     },
+        //     function(reason, data){
+        //         console.log('rejected失败回调');
+        //         console.log('失败执行回调抛出失败原因：',reason);
+        //     }
+        // );
+
+
+
+
+        // function promiseClick2(){
+        //     let p = new Promise(function(resolve, reject){
+        //         setTimeout(function(){
+        //             var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+        //             console.log('随机数生成的值：',num)
+        //             if(num<=10){
+        //                 resolve(num);
+        //             }
+        //             else{
+        //                 reject('数字太于10了即将执行失败回调');
+        //             }
+        //         }, 2000);
+        //     })
+        //     return p
+        // }
+
+        // promiseClick2().then(
+        //     function(data){
+        //         console.log('resolved成功回调');
+        //         console.log('成功回调接受的值：',data);
+        //     }
+        // )
+        // .catch(function(reason, data){
+        //     console.log('catch到rejected失败回调');
+        //     console.log('catch失败执行回调抛出失败原因：',reason);
+        // });
+
+
+
+        function promiseClick1(){
+		    let p = new Promise(function(resolve, reject){
                 setTimeout(function(){
-                    console.log('执行完成Promise');
-                    resolve('要返回的数据可以任何数据例如接口返回数据');
+                    var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                    console.log('随机数生成的值：',num)
+                    if(num<=10){
+                        resolve(num);
+                    }
+                    else{
+                        reject('数字太于10了即将执行失败回调');
+                    }
                 }, 2000);
-            });
-            return p;
-        }
-        PromiseTest().then( data => {
-            console.log(data)
+		   })
+		   return p
+	   }
+	   function promiseClick2(){
+		    let p = new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                    console.log('随机数生成的值：',num)
+                    if(num<=10){
+                        resolve(num);
+                    }
+                    else{
+                        reject('数字太于10了即将执行失败回调');
+                    }
+                }, 2000);
+		   })
+		   return p
+	   }
+	   function promiseClick3(){
+		    let p = new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    var num = Math.ceil(Math.random()*20); //生成1-10的随机数
+                    console.log('随机数生成的值：',num)
+                    if(num<=10){
+                        resolve(num);
+                    }
+                    else{
+                        reject('数字太于10了即将执行失败回调');
+                    }
+                }, 2000);
+		   })
+		   return p
+	   }
+
+	Promise.all([promiseClick3(), promiseClick2(), promiseClick1()])
+		.then(function(results){
+			console.log(results);
+		}).catch(function(reason, data){
+            console.log('catch到rejected失败回调', reason);
         });
+
     </script>
   </body>
 </html>

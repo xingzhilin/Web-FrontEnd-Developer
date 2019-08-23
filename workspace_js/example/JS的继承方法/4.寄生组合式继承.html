@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            基本思想：通过借用函数来继承属性,通过原型链的混成形式来继承方法 
+            具体实现：
+        */
+        function inheritProperty(subType,superType){
+            var prototype = object(superType.prototype);//创建对象
+            prototype.constructor = subType;//增强对象
+            subType.prototype = prototype;//指定对象
+        }
+        function beget(obj){//生孩子函数
+            var  F = function(){};
+            F.prototype = obj;
+            return new F();
+        }
+        function Super(){
+            //在此声明基本属性和引用属性
+            this.val = 1;
+            this.arr = [1];
+        }
+        //在此声明函数
+        Super.prototype.fun1 = function(){};
+        Super.prototype.fun2 = function(){};
+        function Sub(){
+            Super.call(this);//核心代码
+        }
+        var proto = beget(Super.prototype);//核心
+        proto.constructor = Sub; //核心
+        Sub.prototype = proto;  //核心代码
+        var sub = new Sub();
+
+        /*
+          2.核心 
+            用生孩子函数得到一个“纯洁的对象”（无实例属性），再逐步增强之（填充实例属性） 
+            beget(Super.prototype)切掉了原型对象上多余的那份父类实例属性 
+            优点：比较完美 
+            缺点：比较麻烦
+        */
+
+
+
+
+    </script>
+</body>
+</html>

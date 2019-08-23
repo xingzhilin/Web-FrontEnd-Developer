@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+             
+            具体实现：
+        */
+
+        function beget(obj){
+        var F = function(){};
+        F.prototype = obj;
+        return new F();
+        }
+        function Super(){
+        this.val = 1;
+        this.arr = [1];
+        }
+        function getSubObject(obj){
+        //创建新对象
+        var clone = beget(obj);//核心
+        clone.attr1 = 1;
+        clone.attr2 = 2;
+        return clone;
+        }
+        var sub = getSubObject(new Super());
+        console.log(sub.val);
+        console.log(sub.arr);
+        console.log(sub.arr1);
+
+        /*
+          核心： 
+            给原型式继承穿了个马甲 
+            注意:beget函数不是必须的，创建对象-增强-返回该对象，这样的过程叫做寄生式继承，新的对象是如何创建的不重要 
+            优缺点： 
+            优点：1.不需要创建自定义类型 
+            缺点：1.无法实现函数的复用
+        */
+
+
+
+
+    </script>
+</body>
+</html>

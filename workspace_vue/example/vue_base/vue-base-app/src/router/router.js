@@ -1,5 +1,7 @@
 import Home from '@/views/Home.vue'
 import ActiveClass from '@/components/ActiveClass.vue';
+import TestVuex from '@/components/TestVuex.vue';
+import VuexLearn from '@/components/VuexLearn.vue';
 // import TestIndex from '@/components/pages/TEST.vue';
 // views 单独的router
 export const HomeRouter = {
@@ -18,7 +20,6 @@ export const HomeRouter2 = {
       title: 'Home'
     },
     component: Home,
-  
   };
 export const ActiveClassRouter = {
     path: '/ActiveClass',
@@ -28,7 +29,25 @@ export const ActiveClassRouter = {
     },
     component: ActiveClass,
   };
-  
+export const TestVuexRouter = {
+  path: '/TestVuex',
+  name: 'TestVuexLink',
+  meta: {
+    title: 'TestVuex'
+  },
+  component: TestVuex,
+};
+export const VuexLearnRouter = {
+  path: '/vuex',
+  name: 'VuexLearnLink',
+  meta: {
+    title: 'VuexLearn'
+  },
+  component: VuexLearn,
+};
+
+
+
 
 // export const testRouter = {
 //   path: '/test',
@@ -42,5 +61,7 @@ export const ActiveClassRouter = {
 export const routers = [
     HomeRouter,
     HomeRouter2,
-    ActiveClassRouter
+    ActiveClassRouter,
+    TestVuexRouter,
+    VuexLearnRouter
 ];

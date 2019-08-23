@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 基本数据类型
+        // Number String Boolean  Null Undefined  Symbol
+        // “number”、“string”、“boolean”、“object”、"symbol"、   “function”和“undefined”
+
+        var num = 1;
+        var str = 'a';
+        var flag = true;
+        var a = null;
+        var m;
+
+        console.log(num, str, flag, a, m); // 1 "a" true null undefined
+
+        console.log(typeof num, typeof str, typeof flag, typeof a, typeof m); //  number string boolean object undefined
+        console.log(typeof null); // 'object'
+        console.log(typeof undefined); // 'undefined'
+        console.log(typeof NaN); // number
+        console.log(NaN == undefined); // false
+        console.log(NaN == NaN); // false
+        var str = "123abc";
+        console.log(typeof str++); // number   typeof NaN
+        console.log(str); // 123
+        // VM25091:1 object
+        // VM25091:2 undefined
+        // VM25091:3 number
+        // VM25091:4 false
+        // VM25091:5 false
+        // VM25091:7 number
+        // VM25091:8 NaN
+
+    </script>
+</body>
+</html>
