@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        Person.prototype.getName = function(){
+            console.log(this.name)
+        }
+
+
+        function Teacher(name, age, job){
+            Person.call(this, name, age);
+            this.job = job;
+        }
+        Teacher.prototype = new Person();
+        Teacher.prototype.constructor = Teacher;
+        Teacher.prototype.getJob = function(){
+            console.log(this.job)
+        }
+        let t1 = new Teacher('FF', 12, 'qwe')
+        t1.getJob()
+        t1.getName()
+    </script>
+</body>
+</html>

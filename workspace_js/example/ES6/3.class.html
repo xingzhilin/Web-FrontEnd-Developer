@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            class 垒声明
+            constructor 构造函数
+            extends  继承
+            super  父类 超类
+        */
+        class Person {
+            constructor(name, age){
+                this.name = name;
+                this.age = age;
+            }
+            getName(){
+                console.log(this.name)
+            }
+        }
+
+        //var p = new Person('li',1);
+        //p.getName();
+
+
+        class Teacher extends Person {
+            constructor(name, age, job){
+                super(name, age);
+                this.job = job;
+            }
+            getJob(){
+                console.log(this.job)
+            }
+        }
+
+        var t1 = new Teacher('ly',34,'q');
+        t1.getName();
+        t1.getJob();
+
+        class Student {
+            constructor(name) {
+                this.name = name;
+            }
+
+            hello() {
+                alert('Hello, ' + this.name + '!');
+            }
+        }
+        var xiaoming = new Student('小明');
+        xiaoming.hello();
+
+        class PrimaryStudent extends Student {
+            constructor(name, grade) {
+                super(name); // 记得用super调用父类的构造方法!
+                this.grade = grade;
+            }
+
+            myGrade() {
+                alert('I am at grade ' + this.grade);
+            }
+        }
+        var ps1 = new PrimaryStudent('小明', 'AAA');
+        ps1.hello();
+        ps1.myGrade();
+
+
+    </script>
+</body>
+</html>

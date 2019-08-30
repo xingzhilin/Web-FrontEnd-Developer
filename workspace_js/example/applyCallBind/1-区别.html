@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Foo(name){
+            this.name=name;
+        }
+
+        Foo.prototype.getName=function(){
+            return this.name;
+        }
+
+        function Bar(name,label){
+            // Foo.call(this,name);
+
+            Foo.apply(this,[name])
+            this.label=label;
+        }
+
+        Bar.prototype.getMylabel=function(){
+            return this.label;
+        }
+
+        var fo=new Foo('一灯');
+        console.log(fo.getName());  //一灯
+
+        var ba=new Bar("是你的?","大家的");
+        console.log( ba.getMylabel());    //大家的
+
+        console.log(ba);//bar{label:大家的，name:是你的？}
+    </script>
+</body>
+</html>
