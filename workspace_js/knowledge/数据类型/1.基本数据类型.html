@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JavaScript数据类型-Number|String|Boolean|Null|Undefined</title>
+</head>
+<body>
+    <h1>JavaScript数据类型-Number</h1>
+    <p>
+            123; // 整数123 <br>
+            0.456; // 浮点数0.456<br>
+            1.2345e3; // 科学计数法表示1.2345x1000，等同于1234.5<br>
+            -99; // 负数<br>
+            NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示<br>
+            Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
+    </p>
+    <h1>运算符</h1>
+    <h3>求和 -> +</h3>
+    <h3>求差 -> -</h3>
+    <h3>求积 -> *</h3>
+    <h3>求商 -> /</h3>
+    <h3>求余 -> %</h3>
+    <h3>逻辑运算 - Boolean</h3>
+    <h4>与运算 -> &&</h4>
+    <p>
+        只有所有都为true，&&运算结果才是true：
+        true && true; // 这个&&语句计算结果为true
+        true && false; // 这个&&语句计算结果为false
+        false && true && false; // 这个&&语句计算结果为false
+    </p>
+    <h4>或运算 -> ||</h4>
+    <p>
+        只要其中有一个为true，||运算结果就是true：
+        false || false; // 这个||语句计算结果为false
+        true || false; // 这个||语句计算结果为true
+        false || true || false; // 这个||语句计算结果为true
+    </p>
+    <h4>非运算 -> !</h4>
+    <h3>比较运算 - > < >= <= ==  ===</h3>
+    <p>
+        比较运算符返回值是布尔值
+    </p>
+    <h3>Null</h3>
+    <p>
+            null表示一个“空”的值
+    </p>
+    <h3>Undefined</h3>
+    <p>
+        undefined表示值未定义
+    </p>
+    <script>
+        console.log(typeof 1); // number
+        console.log(typeof NaN); // number
+        console.log(true); // true
+        console.log(false); // false
+        console.log( 2>1 );  // true
+        console.log( 2<1 ); //false
+
+        console.log( 2&&1 ); // 1
+        console.log( 1&&2 );  // 2
+        console.log( 2||1 ); // 2
+        console.log( 1||2 ); // 1
+        console.log( true||false ); // true
+        console.log( false||true ); // true
+        console.log( true&&false ); // false
+        console.log( false&&true ); // false
+        console.log({} || []); // {}
+        console.log({} || {}); // {}
+        console.log([] || []); // []
+        console.log([] || {});// []
+
+        console.log(''||1); // 1
+
+        console.log(''&&1); // ''
+
+        console.log(NaN === NaN);  // false
+        console.log(NaN == NaN);   // false 
+
+        console.log( isNaN(NaN));  // true 
+        console.log( isNaN(2)); // false 
+        console.log( isNaN('2')); // false 
+
+        console.log( typeof null); // object
+
+        console.log( typeof undefined ) // undefined
+
+
+    </script>
+</body>
+</html>
