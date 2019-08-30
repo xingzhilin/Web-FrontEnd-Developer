@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .wrap{
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+        .mid{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+        .inner{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            border: 1px solid red;
+            width: 500px;
+            text-align: center;
+            margin: 100px auto;
+        }
+        #ul1 li {
+            list-style: none;
+            line-height: 30px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+
+        }
+    </style>
+</head>
+<body>
+    <button id="a-btn">click</button>
+    <div class="wrap" id="box">
+        wrap
+        <div class="mid">
+            mid
+            <div class="inner">
+                innter
+            </div>
+        </div>
+    </div>
+
+    <h2>事件捕获 - 事件冒泡</h2>
+    <p>起初Netscape制定了JavaScript的一套事件驱动机制（即事件捕获）。随即IE也推出了自己的一套事件驱动机制（即事件冒泡）。最后W3C规范了两种事件机制，分为捕获阶段、目标阶段、冒泡阶段。IE8以前IE一直坚持自己的事件机制（前端人员一直头痛的兼容性问题），IE9以后IE也支持了W3C规范。
+            </p>
+    <h2>事件冒泡 - bubbling phase  -- false  - IE</h2>
+    <p>由内而外</p>
+
+    <h2>事件捕获 - captur phase  -- true -- Netscape</h2>
+    <p>由外而内</p>
+    <ul id="ul1">
+        <li>我是第1个li标签</li>
+        <li>我是第2个li标签</li>
+        <li>我是第3个li标签</li>
+        <li>我是第4个li标签</li>
+        <li>我是第5个li标签</li>
+        <li>我是第6个li标签</li>
+        <li>我是第7个li标签</li>
+        <li>我是第8个li标签</li>
+        <li>我是第9个li标签</li>
+        <li>我是第10个li标签</li>
+    </ul>
+    <script>
+         //需求: 1.给10个li标签移入添加背景高亮
+    //      2.移出背景颜色恢复
+
+    //思路:
+    // 给ul注册鼠标移入事件,通过获取事件源(e.target)就可以得知是哪一个子元素触发了这个事件
+
+        var ul1 = document.getElementById("ul1");
+
+        var DefalutColor = null;  //全局变量存储默认的背景色
+        ul1.onmouseover = function(e){
+            //获取到的是对应的li标签对象
+            // console.log(e.target);
+            DefalutColor = e.target.style.backgroundColor; //将li标签默认的背景色赋给defalutColor
+            e.target.style.backgroundColor = 'yellow';
+        }
+
+        ul1.onmouseout = function(e){
+            e.target.style.backgroundColor = DefalutColor; //li标签默认的背景色
+        }
+        document.querySelector('#a-btn').onclick = function(e){
+            //阻止默认行为
+            e = e || window.event;
+            e.preventDefault();
+
+            //功能代码 doSomething......
+            alert("hello world!");
+        };
+        // //可以给同名的事件，绑定多个事件处理程序
+
+        //语法：对象.addEventListener(参数1,参数2,参数3);
+        //参数1：事件名(字符串)，不要加on  例如：click  、 mouseover 、mouseout
+        //参数2：事件处理程序（函数名），当事件触发后哪个函数来处理
+        //参数3：是一个bool类型，可以不传，默认为fasle（代表冒泡）跟冒泡和捕获有关
+        //如果是true则表示捕获阶段
+
+        //如果有同名事件不会覆盖，而是会依次执行
+        //IE8及以前的版本不支持
+        //  1. 捕获阶段 先由文档的根节点document往事件触发对象，从外向内捕获事件对象；
+        //  2. 目标阶段 到达目标事件位置（事发地），触发事件；
+        //  3. 冒泡阶段 再从目标事件位置往文档的根节点方向回溯，从内向外冒泡事件对象。
+
+
+        window.onclick = function () {
+
+            alert("window被点击了");
+        }
+
+        document.onclick = function () {
+
+            alert("文档被点击了");
+        }
+
+        document.documentElement.onclick = function () {
+
+            alert("html被点击了");
+        }
+
+        document.body.onclick = function () {
+
+            alert("body被点击了");
+        }
+
+        document.getElementById("box").onclick = function () {
+
+            alert("我是骚粉的大盒子");
+        };
+
+
+        // ---------------
+
+        window.addEventListener("click", function () {
+            alert("这是window");
+        },true)
+
+
+        document.addEventListener("click", function () {
+            alert("这是document");
+        },true)
+
+        document.documentElement.addEventListener("click", function (e) {
+            e = e || window.event;
+            alert("这是html");
+        //        e.stopPropagation();//阻止事件冒泡和事件捕获
+
+        },true)
+
+        document.body.addEventListener("click", function () {
+
+            alert("这是body");
+
+        },true)
+
+        //参数3：默认是false，代表是支持事件冒泡
+        box.addEventListener("click", function () {
+
+                alert("这是box");
+        },true);
+
+
+        /* 1.阻止事件冒泡：让同名事件不要在父元素中冒泡（触发）
+        * 说人话：点击一个元素只会触发当前元素的事件，不会触发父元素的同名事件
+        * 语法：  事件对象.stopPropagation()       IE8及之前不支持
+        *       事件对象.cancelBubble = true      IE8之前支持
+        * 注意：如果想要阻止事件冒泡，一定要在触发事件的函数中接收事件对象
+
+
+        *2.阻止事件捕获:
+        *事件对象.stopPropagation() 除了可以阻止冒泡还可以阻止捕获
+
+        *IE8及以前没有捕获！
+        */
+   </script>
+</body>
+</html>
